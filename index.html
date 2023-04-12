@@ -1,0 +1,401 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <title>NicksPics</title>
+  </head>
+  <body>
+    <!-- loader -->
+    <script>
+      window.addEventListener("load", function () {
+        const loader = document.querySelector(".loader");
+        loader.classList.add("hidden");
+        document.body.classList.remove("hidden");
+      });
+    </script>
+    <div class="wrapper">
+      <!-- Exp Menu -->
+      <div class="menu" id="exp-menu">
+        <button id="up-btn">Up</button>
+        <button id="replay-intro-button">Intro</button>
+        <button id="exp-btn">Experience</button>
+        <button id="me-btn">Contacts</button>
+      </div>
+
+      <div class="overlay">
+        <div class="exp-container">
+          <div class="exp-body">
+            <div class="exp-content">
+              <video muted autoplay loop>
+                <source src="css/EXP/Carrot Engine.webm" />
+              </video>
+            </div>
+            <div class="exp-content">
+              <p>
+                CG GENERALIST :: <br />
+                <br />
+                c4d+ue4 level design, panoramic/vr video production... <br />
+                <br />
+                <br />
+                VR ENGINEER :: <br />
+                <br />
+                stype: map creation, lens calibration... <br />
+                <br />
+                camera sync, unreal engine + multi user + svn... <br />
+                <br />
+                sdi and ethernet switching setup...<br />
+                soft setting network...<br />
+              </p>
+            </div>
+
+            <div class="exp-content">
+              <img
+                src="css/EXP/870x489_0x290_detail_crop_20220906165223_5b5248ce_61caddc98189135f3f7fb6d69fc8297715e06197e766a09c5403bb10954fd508-AI.jpg"
+                alt=""
+              />
+            </div>
+            <div class="exp-content">
+              <p>
+                done: <br />
+                mir24 - real-time virtual production tv show (1 season)...
+                <br />
+                https://youtu.be/dthQocsLvqo <br />
+                <br />
+                spief 2022 - real-time virtual production tv stand...<br />
+              </p>
+            </div>
+            <div class="exp-content">
+              <img src="css/EXP/19-pmefStud_io (1)-AI.jpg" alt="" />
+            </div>
+            <div class="exp-content">
+              <video muted autoplay loop>
+                <source src="css/EXP/spief.webm" />
+              </video>
+            </div>
+            <div class="exp-content">
+              <p>
+                CINEMA 4D MOTION ARTIST ::
+                <br />
+                <br />
+                rendering in c4d+vray/arnold, ue4 animation & vfx...<br />
+                <br />
+                directed vr concert scene level design...<br />
+                <br />
+                unique methods of real-time 3d vfx animation developed...<br />
+                <br />
+                <br />
+                FREELANCE JOBS DONE ::<br />
+                <br />
+                interior design, ar content design, online ads/banners
+              </p>
+            </div>
+
+            <div class="exp-content">
+              <video muted autoplay loop>
+                <source src="css/EXP/Fracc72.webm" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const overlay = document.querySelector(".overlay");
+        const expBtn = document.querySelector("#exp-btn");
+
+        expBtn.addEventListener("click", () => {
+          if (overlay.style.display === "block") {
+            overlay.style.display = "none";
+          } else {
+            overlay.style.display = "block";
+          }
+        });
+
+        document.querySelector("#up-btn").addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        document.querySelector("#me-btn").addEventListener("click", () => {
+          window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth",
+          });
+        });
+      </script>
+
+      <!-- Intro -->
+      <div class="intro-video-container">
+        <video controls autoplay muted>
+          <source src="css/Vids/IntroCorrLUTSoundWebRip.webm" />
+          <source src="css/Vids/Cavehead.mp4" />
+        </video>
+        <button id="skip-intro-button">SKIP INTRO</button>
+      </div>
+      <div id="scroll-down-wrapper">
+        <div class="scroll-down-container">
+          <div class="scroll-down-text">&#x2193;Scroll Down&#x2193;</div>
+        </div>
+      </div>
+      <script>
+        const videoContainer = document.querySelector(".intro-video-container");
+        const video = videoContainer.querySelector("video");
+        const skipButton = videoContainer.querySelector("#skip-intro-button");
+        const replayButton = document.querySelector("#replay-intro-button");
+        const scrollDownWrapper = document.querySelector(
+          "#scroll-down-wrapper"
+        );
+
+        // функция для показа блока прокрутки
+        function showScrollDown() {
+          scrollDownWrapper.style.display = "none";
+          setTimeout(function () {
+            scrollDownWrapper.classList.add("show");
+            scrollDownWrapper.style.display = "block";
+          }, 3000);
+        }
+
+        video.addEventListener("ended", function () {
+          video.pause();
+          videoContainer.style.display = "none";
+          window.removeEventListener("wheel", disableScroll);
+          showScrollDown();
+        });
+
+        skipButton.addEventListener("click", function () {
+          video.pause();
+          videoContainer.style.display = "none";
+          window.removeEventListener("wheel", disableScroll);
+          enableScroll();
+          showScrollDown();
+        });
+
+        replayButton.addEventListener("click", function () {
+          video.currentTime = 0;
+          video.play();
+          videoContainer.style.display = "block";
+          window.addEventListener("wheel", disableScroll, { passive: false });
+          scrollDownWrapper.style.display = "none";
+        });
+
+        // обработчик событий для события wheel
+        function disableScroll(event) {
+          event.preventDefault(); // отмена действия по умолчанию
+        }
+
+        function enableScroll() {
+          window.removeEventListener("wheel", disableScroll);
+          window.addEventListener("wheel", enableScroll, { passive: false });
+        }
+
+        // блокировка скролла во время воспроизведения видео
+        video.addEventListener("play", function () {
+          window.addEventListener("wheel", disableScroll, { passive: false });
+        });
+
+        // обработчик событий для события ended
+        video.addEventListener("ended", function () {
+          videoContainer.style.display = "none"; // скрытие видео
+          window.removeEventListener("wheel", disableScroll); // отмена блокировки скролла
+          window.addEventListener("wheel", enableScroll, { passive: false }); // включение скролла
+          showScrollDown();
+        });
+      </script>
+      <!--body  -->
+      <div class="fullscreen_wrapper">
+        <div class="videoWrapper">
+          <video
+            class="loop_bg"
+            autoplay
+            loop
+            muted
+            preload="auto"
+            src="css/Vids/LoopCorrMontLUT.webm"
+          ></video>
+        </div>
+      </div>
+
+      <!-- pictures n videos -->
+
+      <div class="gridContainerWrapper">
+        <div class="gridItems">
+          <div class="gridItemsContainer">
+            <div class="gridItemsBody">
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/room3.webp" title="c4d openVDB keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/room2.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/room4.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/BotseqLUT.webm" />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/memory.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/CONTROL.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/SpiderWeb.webm" />
+                    />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/rock_soul_.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/CYBER.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img
+                    src="css/Pics/forest.webp"
+                    title="c4d + forester octane"
+                  />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/oscillRMSTRD.webm" />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img src="css/Pics/T.webp" title="c4d keyshot" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <video title="c4d keyshot" muted autoplay loop>
+                    <source src="css/Vids/NFTs.webm" />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img
+                    src="css/Pics/classic.webp"
+                    title="c4d arnold
+
+                    this image
+                    was once
+                    posted
+                    by retro-wave
+                    Instagram page
+                    and then stolen
+                    by a soundcloud
+                    dj"
+                  />
+                </div>
+              </div>
+              <div style="margin-bottom: 50px" class="gridItem Framses1">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/Framses1.webm" />
+                    <source src="css/Vids/Framses1.mp4" />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img title="c4d arnold" src="css/Pics/Stand.webp" />
+                </div>
+              </div>
+              <div style="margin-bottom: 50px" class="gridItem Framses3">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/Framses3.webm" />
+                  </video>
+                </div>
+              </div>
+              <div style="margin-bottom: 50px" class="gridItem Framses2">
+                <div class="griditemImg">
+                  <video title="c4d arnold" muted autoplay loop>
+                    <source src="css/Vids/Framses2.webm" />
+                  </video>
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img title="c4d arnold" src="css/Pics/darkfisher.webp" />
+                </div>
+              </div>
+
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img title="c4d keyshot" src="css/Pics/N.webp" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="griditemImg">
+                  <img title="c4d arnold" src="css/Pics/Fisher.webp" />
+                </div>
+              </div>
+              <div class="gridItem">
+                <div class="footer-wrapper">
+                  <footer>
+                    <div class="footer-container">
+                      <p>
+                        //HIRE ME// <br />
+                        :: ALWAYS AVAILABLE FOR FREELANCE :: <br />
+
+                        EMAIL: <br />
+                        your.fancy.artist@gmail.com
+                        <br />
+
+                        TELEGRAM: <br />
+                        <a href="https://t.me/RangeRoller"
+                          ><img src="css/EXP/tg.jpg" alt=""
+                        /></a>
+
+                        <br />
+                        WHATSAPP: <br />
+                        <a href="https://wa.me/message/KLV5OVO6UDVRO1?src=qr"
+                          ><img src="css/EXP/wa.jpg" alt=""
+                        /></a>
+                      </p>
+                    </div>
+                  </footer>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
