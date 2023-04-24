@@ -14,7 +14,25 @@
     <title>Profiler</title>
   </head>
   <body>
-    
+    <!-- preloader -->
+<div class="preloader">
+  <div class="preloader__inner">
+    <div class="preloader__animation"></div>
+   
+  </div>
+</div>
+<script>
+  // ждать полной загрузки страницы
+window.onload = function() {
+  // показать контент сайта
+  document.querySelector('.all-content').style.display = 'block';
+  // скрыть preloader
+  document.querySelector('.preloader').style.display = 'none';
+};
+</script>
+
+      <!-- content -->
+    <div class="all-content">
       <!-- Exp Menu -->
       <div class="menu" id="exp-menu">
         <button id="up-btn">Up</button>
@@ -33,12 +51,12 @@
             </div>
             <div class="exp-content">
               <p>
-                CG GENERALIST :: <br />
+               <b>CG GENERALIST ::</b><br />
                 <br />
                 c4d+ue4 level design, panoramic/vr video production... <br />
                 <br />
                 <br />
-                VR ENGINEER :: <br />
+                <b>VR ENGINEER ::</b>  <br />
                 <br />
                 stype: map creation, lens calibration... <br />
                 <br />
@@ -57,10 +75,10 @@
             </div>
             <div class="exp-content">
               <p>
-                done: <br />
+               <b>DONE ::</b>  <br />
                 mir24 - real-time virtual production tv show (1 season)...
                 <br />
-                https://youtu.be/dthQocsLvqo <br />
+               <a href="https://youtu.be/dthQocsLvqo">https://youtu.be/dthQocsLvqo</a> <br />
                 <br />
                 spief 2022 - real-time virtual production tv stand...<br />
               </p>
@@ -75,7 +93,7 @@
             </div>
             <div class="exp-content">
               <p>
-                CINEMA 4D MOTION ARTIST ::
+               <b>CINEMA 4D MOTION ARTIST ::</b> 
                 <br />
                 <br />
                 rendering in c4d+vray/arnold, ue4 animation & vfx...<br />
@@ -85,7 +103,7 @@
                 unique methods of real-time 3d vfx animation developed...<br />
                 <br />
                 <br />
-                FREELANCE JOBS DONE ::<br />
+               <b>FREELANCE JOBS DONE ::</b> <br />
                 <br />
                 interior design, ar content design, online ads/banners
               </p>
@@ -395,6 +413,7 @@ c4d arnold" ></video>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </body>
 </html>
