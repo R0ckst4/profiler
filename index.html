@@ -15,24 +15,27 @@
   </head>
   <body>
     <!-- preloader -->
-<div class="preloader">
-  <div class="preloader__inner">
-    <div class="preloader__animation"></div>
-   
+<div id="page-preloader" class="preloader">
+  <div class="loader">
+    </div>  
   </div>
 </div>
-<script>
-  // ждать полной загрузки страницы
-window.onload = function() {
-  // показать контент сайта
-  document.querySelector('.all-content').style.display = 'block';
-  // скрыть preloader
-  document.querySelector('.preloader').style.display = 'none';
-};
-</script>
 
-      <!-- content -->
-    <div class="all-content">
+<!-- content -->
+<div class="all-content" >
+  <!-- Intro -->
+  <div class="intro-video-container">
+    <video class="intro" controls preload="auto" autoplay muted>
+      <source src="css/Vids/IntroCorrLUTSoundWebRip.webm" />
+    </video>
+    <button id="skip-intro-button">SKIP INTRO</button>
+  </div>
+  <div id="scroll-down-wrapper">
+    <div class="scroll-down-container">
+      <div class="scroll-down-text">&#x2193;Scroll Down&#x2193;</div>
+    </div>
+  </div>
+</div>
       <!-- Exp Menu -->
       <div class="menu" id="exp-menu">
         <button id="up-btn">Up</button>
@@ -118,106 +121,9 @@ window.onload = function() {
         </div>
       </div>
 
-      <script>
-        const overlay = document.querySelector(".overlay");
-        const expBtn = document.querySelector("#exp-btn");
+      <script src="main.js"></script>
 
-        expBtn.addEventListener("click", () => {
-          if (overlay.style.display === "block") {
-            overlay.style.display = "none";
-          } else {
-            overlay.style.display = "block";
-          }
-        });
-
-        document.querySelector("#up-btn").addEventListener("click", () => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        document.querySelector("#me-btn").addEventListener("click", () => {
-          window.scrollTo({
-            top: document.body.scrollHeight,
-            behavior: "smooth",
-          });
-        });
-      </script>
-
-      <!-- Intro -->
-      <div class="intro-video-container">
-        <video controls preload="auto" autoplay muted>
-          <source src="css/Vids/IntroCorrLUTSoundWebRip.webm" />
-        </video>
-        <button id="skip-intro-button">SKIP INTRO</button>
-      </div>
-      <div id="scroll-down-wrapper">
-        <div class="scroll-down-container">
-          <div class="scroll-down-text">&#x2193;Scroll Down&#x2193;</div>
-        </div>
-      </div>
-      <script>
-        const videoContainer = document.querySelector(".intro-video-container");
-        const video = videoContainer.querySelector("video");
-        const skipButton = videoContainer.querySelector("#skip-intro-button");
-        const replayButton = document.querySelector("#replay-intro-button");
-        const scrollDownWrapper = document.querySelector(
-          "#scroll-down-wrapper"
-        );
-
-        // функция для показа блока прокрутки
-        function showScrollDown() {
-          scrollDownWrapper.style.display = "none";
-          setTimeout(function () {
-            scrollDownWrapper.classList.add("show");
-            scrollDownWrapper.style.display = "block";
-          }, 3000);
-        }
-
-        video.addEventListener("ended", function () {
-          video.pause();
-          videoContainer.style.display = "none";
-          window.removeEventListener("wheel", disableScroll);
-          showScrollDown();
-        });
-
-        skipButton.addEventListener("click", function () {
-          video.pause();
-          videoContainer.style.display = "none";
-          window.removeEventListener("wheel", disableScroll);
-          enableScroll();
-          showScrollDown();
-        });
-
-        replayButton.addEventListener("click", function () {
-          video.currentTime = 0;
-          video.play();
-          videoContainer.style.display = "block";
-          window.addEventListener("wheel", disableScroll, { passive: false });
-          scrollDownWrapper.style.display = "none";
-        });
-
-        // обработчик событий для события wheel
-        function disableScroll(event) {
-          event.preventDefault(); // отмена действия по умолчанию
-        }
-
-        function enableScroll() {
-          window.removeEventListener("wheel", disableScroll);
-          window.addEventListener("wheel", enableScroll, { passive: false });
-        }
-
-        // блокировка скролла во время воспроизведения видео
-        video.addEventListener("play", function () {
-          window.addEventListener("wheel", disableScroll, { passive: false });
-        });
-
-        // обработчик событий для события ended
-        video.addEventListener("ended", function () {
-          videoContainer.style.display = "none"; // скрытие видео
-          window.removeEventListener("wheel", disableScroll); // отмена блокировки скролла
-          window.addEventListener("wheel", enableScroll, { passive: false }); // включение скролла
-          showScrollDown();
-        });
-      </script>
+      
       <!--body  -->
       <div class="fullscreen_wrapper">
         <div class="videoWrapper">
