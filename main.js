@@ -10,7 +10,7 @@ document.body.onload = function () {
     if (!preloader.classList.contains("done")) {
       preloader.classList.add("done");
     }
-  }, 1000);
+  }, 10000);
 };
 
 function showScrollDown() {
@@ -20,7 +20,13 @@ function showScrollDown() {
     scrollDownWrapper.style.display = "block";
   }, 3000);
 }
-
+function disableScroll(event) {
+  event.preventDefault();
+}
+function enableScroll() {
+  window.removeEventListener("wheel", disableScroll);
+  window.addEventListener("wheel", enableScroll, { passive: false });
+}
 video.addEventListener("ended", function () {
   video.pause();
   videoContainer.style.display = "none";
@@ -43,15 +49,6 @@ replayButton.addEventListener("click", function () {
   window.addEventListener("wheel", disableScroll, { passive: false });
   scrollDownWrapper.style.display = "none";
 });
-
-function disableScroll(event) {
-  event.preventDefault();
-}
-
-function enableScroll() {
-  window.removeEventListener("wheel", disableScroll);
-  window.addEventListener("wheel", enableScroll, { passive: false });
-}
 
 video.addEventListener("play", function () {
   window.addEventListener("wheel", disableScroll, { passive: false });

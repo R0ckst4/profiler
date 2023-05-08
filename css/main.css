@@ -17,7 +17,7 @@
   width: 75px;
   height: 75px;
   border: 15px solid white;
-  border-radius: 50%;
+  border-radius: 70%;
   border-top-color: rgba(255, 166, 0, 0.945);
   position: absolute;
   left: 50%;
@@ -33,6 +33,18 @@
   to {
     transform: translate(-50%, -50%) rotate(360deg);
   }
+}
+.loader-text {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  font-size: 150%;
+  text-align: center;
+
+  z-index: 999999;
 }
 
 .done {
